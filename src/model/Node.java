@@ -4,14 +4,15 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class Node {
 	// Binary Tree Node
-	private int height;
+	private int height, index;
 	private Container container;
 	private Node left, right, parent;
 	
-	public Node(Container container, int height, Node parent) {
+	public Node(Container container, int height, Node parent, int index) {
 		super();
 		this.container = container;
 		this.height = height;
+		this.index = index;
 		this.left = null;
 		this.right = null;
 		this.parent = parent;
@@ -28,14 +29,29 @@ public class Node {
 	}
 	
 	public void paint(GraphicsContext gc) {
-		System.out.printf("%-2d: %-3d - %-3d\n", height, getContainer().getWidth(), getContainer().getHeight());
-		this.container.paintContainer(gc);
+//		System.out.printf("%-2d: %-3d - %-3d\n", height, getContainer().getWidth(), getContainer().getHeight());
+		if (isLeaf()) {
+			this.container.paintContainer(gc);
+			return;
+		}
 		if (left != null) {
 			left.paint(gc);
 		} 
 		if (right != null) {
 			right.paint(gc);
 		}
+	}
+	
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+	public int getParentIndex() {
+		return parent.getIndex();
 	}
 	
 	public Container getContainer() {
