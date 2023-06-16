@@ -36,12 +36,12 @@ public class BSP {
 		} 
 		if (r == 1) {
 			// split vertical
-			int w1 = random(1, c.getWidth());
+			int w1 = random(1, c.getWidth()-1);
 			
 			c1 = new Container(c.getX(), c.getY(), w1, c.getHeight());
 			c2 = new Container(c.getX() + w1, c.getY(), c.getWidth() - w1, c.getHeight());
 		} else {
-			int h1 = random(1, c.getHeight());
+			int h1 = random(1, c.getHeight()-1);
 			c1 = new Container(c.getX(), c.getY(), c.getWidth(), h1); 
 			c2 = new Container(c.getX(), c.getY() + h1, c.getWidth(), c.getHeight() - h1); 
 		}
@@ -53,11 +53,11 @@ public class BSP {
 	
 
 	private int splitDirection(int r, int w, int h) {
-		if (w <= 1 && h <= 1) {
+		if (w <= 3 && h <= 3) {
 			return -1;
-		} else if (w <= 1) {
+		} else if (w <= 3) {
 			return 2;
-		} else if (h <= 1) {
+		} else if (h <= 3) {
 			return 1;
 		} else {
 			return r;
